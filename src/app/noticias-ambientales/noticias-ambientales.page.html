@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Noticias Ambientales</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Noticias Ambientales</ion-title>
+    </ion-toolbar>
+  </ion-header>
+<div id="container">
+  @for (noticia of noticias(); track noticia.id) {
+    <ion-card>
+  <img alt="{{noticia.titulo}}" src="{{noticia.imagen}}" />
+  <ion-card-header>
+    <ion-card-title>{{noticia.titulo}}</ion-card-title>
+    <ion-card-subtitle>{{noticia.resumen}}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    {{noticia.contenido}}
+  </ion-card-content>
+</ion-card>
+  }
+  </div>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Voluntariado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Voluntariado</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div id="container">
+    <h2>Solicitud para ser voluntario</h2>
+    <ion-label>Cedula: <ion-input [(ngModel)]="cedula"></ion-input></ion-label>
+    <ion-label>Nombre: <ion-input [(ngModel)]="nombre"></ion-input></ion-label>
+    <ion-label
+      >Apellido: <ion-input [(ngModel)]="apellido"></ion-input
+    ></ion-label>
+    <ion-label>Correo: <ion-input type="email" [(ngModel)]="correo"></ion-input></ion-label>
+    <ion-label
+      >Contraseña: <ion-input [(ngModel)]="password"></ion-input
+    ></ion-label>
+    <ion-label
+      >Teléfono: <ion-input type="tel" [(ngModel)]="telefono"></ion-input
+    ></ion-label>
+
+    <ion-button expand="block" (click)="createSolicitud()"
+      >Mandar solicitud</ion-button
+    >
+  </div>
+</ion-content>
