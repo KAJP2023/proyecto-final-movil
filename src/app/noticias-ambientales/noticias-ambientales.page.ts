@@ -16,6 +16,7 @@ import {
   IonMenuButton,
 } from '@ionic/angular/standalone';
 import { map } from 'rxjs';
+import { HttpService } from '../http.service';
 
 export interface Noticias {
   id: string;
@@ -47,20 +48,13 @@ export interface Noticias {
   ],
 })
 export class NoticiasAmbientalesPage implements OnInit {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpService: HttpService) {}
 // Nombre: Kevin Alfonso Jiménez Pérez - Matricula: 2023-0920
   noticias = signal<Noticias[]>([]);
 
   ngOnInit() {
-    this.httpClient
-      .get<Noticias[]>('/api/noticias')
-      .pipe(map((resData) => resData))
-      .subscribe({
-        next: (data) => {
-          if (data) {
-            this.noticias.set(data);
-          }
-        },
-      });
+       this.httpService.doGet('/api/noticias').subscribe((res:any) =>{    
+      this.noticias.set(res.data);
+    });
   }
 }

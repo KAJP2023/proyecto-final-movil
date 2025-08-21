@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonButtons, IonMenuButton } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { HttpService } from '../http.service';
 
 
 export interface Videos{
@@ -24,19 +25,13 @@ export interface Videos{
 export class VideosEducativosPage implements OnInit {
 // Nombre: Kevin Alfonso Jiménez Pérez - Matricula: 2023-0920
   videos = signal<Videos[]>([]);
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpService: HttpService) { }
 
   ngOnInit() {
-    this.httpClient
-          .get<Videos[]>('/api/videos')
-          .pipe(map((resData) => resData))
-          .subscribe({
-            next: (data) => {
-              if (data) {
-                this.videos.set(data);
-              }
-            },
-          });
+
+       this.httpService.doGet('/api/videos').subscribe((res:any) =>{    
+      this.videos.set(res.data);
+    });
   }
 
 }

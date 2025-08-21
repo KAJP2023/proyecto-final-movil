@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonCardContent, IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { HttpService } from '../http.service';
 
 export interface Servicios{
   id: string;
@@ -21,20 +22,14 @@ export interface Servicios{
 })
 export class ServiciosPage implements OnInit {
   
-  constructor(private httpClient: HttpClient ) { }
+  constructor(private httpService: HttpService ) { }
 // Nombre: Kevin Alfonso Jiménez Pérez - Matricula: 2023-0920
   servicios = signal<Servicios[]>([]); 
   
 
   ngOnInit() {
-    this.httpClient.get<Servicios[]>('/api/servicios').pipe(
-      map((resData) => resData)
-    ).subscribe({
-      next: (data) =>{
-        if(data){
-          this.servicios.set(data);
-        }
-      },
+    this.httpService.doGet('/api/servicios').subscribe((res:any) =>{    
+      this.servicios.set(res.data);
     });
   }
 

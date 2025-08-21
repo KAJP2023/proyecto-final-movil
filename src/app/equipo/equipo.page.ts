@@ -54,7 +54,6 @@ export class EquipoPage implements OnInit {
 
     this.httpService.doGet('/api/equipo').subscribe((res:any) =>{    
       this.equipo.set(res.data); 
-    });
-    
+    });    
   }
 }

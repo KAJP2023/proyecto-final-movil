@@ -44,6 +44,8 @@ export class VoluntariadoPage implements OnInit {
   const correo: string = this.correo;
   const password: string = this.password;
   const telefono: string = this.telefono;
+
+  
     this.httpClient.post('/api/voluntarios', {cedula, nombre,apellido, correo, password, telefono}).
     pipe(
       catchError((error)=>{        

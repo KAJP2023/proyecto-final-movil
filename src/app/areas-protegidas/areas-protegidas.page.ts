@@ -41,7 +41,7 @@ areasProtegidas = signal<AreasProtegidas[]>([]);
   ngOnInit() {
     this.httpService.doGet('/api/areas_protegidas').subscribe((res:any) =>{    
       this.areasProtegidas.set(res.data);
-    })
+    });
   }
 
 }

@@ -1,9 +1,14 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
+  plugins: {
+    CapacitorHttp: {
+      enabled: true,
+    },
+  },
   appId: 'io.ionic.starter',
   appName: 'proyecto-final-movil',
-  webDir: 'www'
+  webDir: 'www',
 };
 
 export default config;

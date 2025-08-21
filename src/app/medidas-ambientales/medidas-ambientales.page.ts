@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from '@ionic/angular/standalone';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
+import { HttpService } from '../http.service';
 
 export interface Medidas {
   id: string;
@@ -37,17 +38,11 @@ export class MedidasAmbientalesPage implements OnInit {
 
   medidas = signal<Medidas[]>([]);
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpService: HttpService) {}
 // Nombre: Kevin Alfonso Jiménez Pérez - Matricula: 2023-0920
   ngOnInit() {
-     this.httpClient.get<Medidas[]>('/api/medidas').pipe(
-              map((resData) => resData)
-            ).subscribe({
-              next: (data) =>{
-                if(data){
-                  this.medidas.set(data);
-                }
-              },
-            });
+    this.httpService.doGet('/api/medidas').subscribe((res:any) =>{    
+      this.medidas.set(res.data);
+    });
   }
 }
